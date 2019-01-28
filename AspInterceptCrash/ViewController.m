@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-
+#import "KVOViewController.h"
 @interface ViewController ()
 
 @end
@@ -20,6 +20,13 @@
     UITextField *testField = [[UITextField alloc] initWithFrame:CGRectMake(20, 80, 400, 50)];
     [self.view addSubview:testField];
     testField.backgroundColor = [UIColor yellowColor];
+    
+    UIButton *kvoBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 150, 80, 40)];
+    [kvoBtn setTitle:@"kvoTest" forState:UIControlStateNormal];
+    [kvoBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [kvoBtn setBackgroundColor:[UIColor yellowColor]];
+    [kvoBtn addTarget:self action:@selector(gotoKvoCtrl) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:kvoBtn];
     
     //    NSMutableArray *arr = [NSMutableArray arrayWithArray:@[@"1",@"002",@"3"]];
     ////    [arr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -47,7 +54,6 @@
     
     //    --- @[nil];
     //    [SubThreadViewController test];
-    return;
     //    1、类型错误
     id d = [NSDate date];
     [d boolValue];
@@ -92,7 +98,12 @@
     [def setObject:[NSNull null] forKey:@"d"];
     [def setObject:@{@"key":@"value",[NSNull null]:@"d"} forKey:@"sd"];
     [def setObject:@[@"sds",[NSNull null]] forKey:@"sd"];
+    
+    // 6、kvo测试
 }
 
 
+- (void)gotoKvoCtrl {
+    [self.navigationController pushViewController:[KVOViewController new] animated:YES];
+}
 @end

@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 #import "AspInterceptCrash.h"
-
+#import "ViewController.h"
 @interface AppDelegate ()
 
 @end
@@ -18,8 +18,17 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    self.window.backgroundColor = [UIColor whiteColor];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:[ViewController new]];
+    [self.window setRootViewController:nav];
+    if (![self.window isKeyWindow]) {
+        [self.window makeKeyAndVisible];
+    }
     [[AspInterceptCrash sharedInstance] asp_startSafeExtension];
     [[AspInterceptCrash sharedInstance] setIsReasonToast:YES];
+    
     return YES;
 }
 
